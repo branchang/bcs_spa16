@@ -1,0 +1,9 @@
+# Git ignore file for BCS SPA 2016 project
+
+data
+downloads
+hadoop
+hive
+logs
+spark
+
