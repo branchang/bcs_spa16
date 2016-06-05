@@ -7,3 +7,5 @@ hive
 logs
 spark
 
+metastore_db
+**/derby.log
