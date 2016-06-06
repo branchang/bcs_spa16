@@ -3,6 +3,9 @@
 data/*
 !data/README*
 
+datasets/LFB/
+datasets/LHP/
+
 downloads/*
 !downloads/README*
 
