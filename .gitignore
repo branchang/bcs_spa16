@@ -7,8 +7,8 @@ downloads/*
 !downloads/README*
 
 logs/*
+!logs/hadoop_logs
 !logs/spark_logs
-!logs/hive_logs
 
 hadoop
 hive

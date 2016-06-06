@@ -23,7 +23,7 @@ start() {
 
 stop() {
     echo '===> Stopping Hive...'
-    pid="$(ps -e | grep HiveServer2 | grep -v 'grep ' | cut -f 1 -d ' ')"
+    pid="$(ps -e | grep HiveServer2 | grep -v 'grep ' | awk '{print $1}')"
     if [ "$pid" == "$pid" ]; then
         echo Killing Hive process $pid
         kill $pid
