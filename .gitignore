@@ -1,10 +1,17 @@
 # Git ignore file for BCS SPA 2016 project
 
-data
-downloads
+data/*
+!data/README*
+
+downloads/*
+!downloads/README*
+
+logs/*
+!logs/spark_logs
+!logs/hive_logs
+
 hadoop
 hive
-logs
 spark
 
 metastore_db
