@@ -1,0 +1,39 @@
+USE spa_2016;
+
+DROP TABLE lhp_data;
+
+CREATE EXTERNAL TABLE lhp_data
+    (id              INT,
+     transaction_id  STRING,
+     price           INT,
+     date_processed  STRING,
+     quarter         TINYINT,
+     month           TINYINT,
+     year            SMALLINT,
+     year_month      STRING,
+     post_code       STRING,
+     property_type   STRING,
+     whether_new     STRING,
+     tenure          STRING,
+     address1        STRING,
+     address2        STRING,
+     address3        STRING,
+     address4        STRING,
+     town            STRING,
+     local_authority STRING,
+     county          STRING,
+     record_status   STRING,
+     post_code_clean STRING,
+     inner_outer     STRING,
+     borough_code    STRING,
+     borough_name    STRING,
+     ward_code       STRING,
+     ward_name       STRING,
+     msoa11          STRING,
+     lsoa11          STRING,
+     oa11            STRING)
+
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' 
+LOCATION '/user/nick/load/LHP'
+tblproperties ('skip.header.line.count'='1');
+
