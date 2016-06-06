@@ -52,7 +52,9 @@ status() {
 [ "$1" == start ] && start && exit
 [ "$1" == stop ] && stop && exit
 [ "$1" == status ] && status && exit
+[ "$1" == spark-client ] && $SPARK_HOME/bin/pyspark && exit
+[ "$1" == hive-client ] && $SPARK_HOME/bin/beeline -u jdbc:hive2:// --color && exit
 
-echo "Syntax: $0 [ start | stop | status ]"
+echo "Syntax: $0 [ start | stop | status | spark-client | hive-client ]"
 exit 1
 
