@@ -22,13 +22,5 @@
         <value>hdfs://localhost:9000</value>
         <description>NameNode URI</description>
     </property>
-    <property>
-        <name>hadoop.proxyuser.nick.hosts</name>
-        <value>*</value>
-    </property>
-    <property>
-        <name>hadoop.proxyuser.nick.groups</name>
-        <value>*</value>
-    </property>
 
 </configuration>
