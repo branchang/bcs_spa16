@@ -1,0 +1,35 @@
+USE spa_2016;
+
+CREATE EXTERNAL TABLE lfb_data
+    (IncidentNumber STRING,
+     DateOfCall STRING,
+     TimeOfCall STRING,
+     IncidentGroup STRING,
+     StopCodeDescription STRING,
+     SpecialServiceType STRING,
+     PropertyCategory STRING,
+     PropertyType STRING,
+     AddressQualifier STRING,
+     Postcode_full STRING,
+     Postcode_district        STRING,
+     IncGeo_BoroughCode STRING,
+     IncGeo_BoroughName STRING,
+     IncGeo_WardCode STRING,
+     IncGeo_WardName STRING,
+     Easting_m STRING,
+     Northing_m STRING,
+     Easting_rounded STRING,
+     Northing_rounded STRING,
+     FRS STRING,
+     IncidentStationGround STRING,
+     FirstPumpArriving_AttendanceTime STRING,
+     FirstPumpArriving_DeployedFromStation STRING,
+     SecondPumpArriving_AttendanceTime STRING,
+     SecondPumpArriving_DeployedFromStation STRING,
+     NumStationsWithPumpsAttending STRING,
+     NumPumpsAttending STRING)
+
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' 
+LOCATION '/user/nick/load/lfb/LFB'
+tblproperties ('skip.header.line.count'='1');
+

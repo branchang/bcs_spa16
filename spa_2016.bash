@@ -4,17 +4,19 @@
 # set environment
 source "$(dirname $0)"/env.src
 echo The project directory is $SPA_2016.
-echo JAVA_HOME is $JAVA_HOME.
 echo
 
 start() {
+    echo ''
     echo '===> Starting Hadoop...'
     $HADOOP_PREFIX/sbin/hadoop-daemon.sh start namenode
     $HADOOP_PREFIX/sbin/hadoop-daemon.sh start secondarynamenode 
     $HADOOP_PREFIX/sbin/hadoop-daemon.sh start datanode
+    echo ''
     echo '===> Starting Spark...'
     $SPARK_HOME/sbin/start-master.sh
     $SPARK_HOME/sbin/start-slaves.sh spark://localhost:7077
+    echo ''
     echo '===> Starting Hive...'
     hive_log_file=$SPA_2016/logs/hive.log
     echo Hive log file is $hive_log_file
@@ -22,14 +24,17 @@ start() {
 }
 
 stop() {
+    echo ''
     echo '===> Stopping Hive...'
     pid="$(ps -e | grep HiveServer2 | grep -v 'grep ' | awk '{print $1}')"
     if [ "$pid" == "$pid" ]; then
         echo Killing Hive process $pid
         kill $pid
     fi
+    echo ''
     echo '===> Stopping Spark...'
     $SPARK_HOME/sbin/stop-all.sh
+    echo ''
     echo '===> Stopping Hadoop...'
     $HADOOP_PREFIX/sbin/stop-dfs.sh
 }
