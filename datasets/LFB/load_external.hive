@@ -30,6 +30,6 @@ CREATE EXTERNAL TABLE lfb_data
      NumPumpsAttending STRING)
 
 ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' 
-LOCATION '/user/nick/load/lfb/LFB'
+LOCATION '/user/nick/load/lfb'
 tblproperties ('skip.header.line.count'='1');
 
