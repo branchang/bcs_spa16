@@ -27,11 +27,13 @@ stop() {
     echo ''
     echo '===> Stopping Hive...'
     pid="$(ps -e | grep HiveServer2 | grep -v 'grep ' | awk '{print $1}')"
-    if [ "$pid" -eq "$pid" ]; then
-        echo Killing Hive process $pid
-        kill $pid
+    if [ -n "$pid" ]; then
+       if [ "$pid" -eq "$pid" ]; then
+          echo Killing Hive process $pid
+          kill $pid
+       fi
     else
-        echo Could not find Hive process (try jps and look for RunJar)
+        echo "Could not find Hive process (try jps and look for RunJar)"
     fi
     echo ''
     echo '===> Stopping Spark...'
