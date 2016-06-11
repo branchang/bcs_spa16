@@ -15,7 +15,7 @@ There are two steps:
 ## Load the Operating System Files into Hadoop
 Run the script `./load_hadoop.bash`.
 
-This will load the file into Hadoop directory `hdfs:/user/nick/load/lfb/LFB`.
+This will load the file into Hadoop directory `hdfs:/user/nick/load/lfb/lfb`.
 
 ## Load the Hadoop Files into Hive
 
