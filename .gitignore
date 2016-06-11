@@ -7,6 +7,9 @@ datasets/LFB/load
 datasets/LFB/zip
 datasets/LHP/load
 datasets/LHP/zip
+datasets/LHP/load_fixed/
+!datasets/LHP/fix_data/fix_data.hive
+datasets/LHP/fix_data/
 
 downloads/*
 !downloads/README*

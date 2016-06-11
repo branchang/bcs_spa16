@@ -1,0 +1,72 @@
+-- DO NOT RUN - USED TO FIX SOME OF THE SOURCE DATA
+
+DROP TABLE lhp_bad;
+
+CREATE EXTERNAL TABLE lhp_bad
+    (transaction_id    STRING,
+     price             INT,
+     date_processed    STRING,
+     post_code         STRING,
+     postcode          STRING,
+     property_type     STRING,
+     whether_newbuild  STRING,
+     tenure            STRING,
+     address2          STRING,
+     address4          STRING,
+     town              STRING,
+     local_authority   STRING,
+     county            STRING,
+     record_status     STRING,
+     year              SMALLINT,
+     month             TINYINT,
+     quarter           TINYINT,
+     house_flat        STRING,
+     statsward         STRING,
+     oa11              STRING,
+     lsoa11            STRING,
+     msoa11            STRING,
+     inner_outer       STRING,
+     year_month        STRING,
+     Postcode_sector   STRING,
+     Postcode_district STRING,
+     Ward14            STRING,
+     ward_code         STRING,
+     borough_code      STRING,
+     borough_name      STRING)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' 
+LOCATION '/user/nick/load/lhp/WRONG_SCHEMA'
+tblproperties ('skip.header.line.count'='1');
+
+INSERT OVERWRITE LOCAL DIRECTORY '/Users/nick/SPA_2016/datasets/LHP/load_fixed'
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+SELECT 0 id,
+          transaction_id,
+          price,
+          date_processed,
+          quarter,
+          month,
+          year,
+          year_month,
+          post_code,
+          property_type,
+          whether_newbuild,
+          tenure,
+          'address1' address1,
+          address2,
+          'address3' address3,
+          address4,
+          town,
+          local_authority,
+          county,
+          record_status,
+          post_code post_code_clean,
+          inner_outer,
+          borough_code,
+          borough_name,
+          ward_code,
+          Ward14 ward_name,
+          msoa11,
+          lsoa11,
+          oa11
+   FROM lhp_bad;
+
