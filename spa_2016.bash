@@ -57,9 +57,10 @@ status() {
 
 hadoop_client() {
     client_url='http://localhost:50070/explorer.html#/'
-    [ "$(uname)" == Linux ] && sensible-browser $client_url && return
-    [ "$(uname)" == Darwin ] && open $client_url && return
-    echo 'Not yet supported for Cygwin'
+    [ "$(uname)" == Linux ] && (sensible-browser $client_url &)
+    [ "$(uname)" == Darwin ] && (open $client_url &)
+    [ "$(uname)" == CYGWIN_NT ] && echo 'Not yet supported for Cygwin'
+    echo Opened Hadoop client URL $client_url
 }
 
 [ "$1" == start ] && start && exit

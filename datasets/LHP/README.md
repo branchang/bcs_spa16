@@ -1,9 +1,7 @@
 # Data Source: London Fire Brigade
 
 The data was obtained from
-[The Mayor of London's Website](http://data.london.gov.uk/dataset/london-fire-brigade-incident-records).
-
-You need to convert the Excel file to "Windows CSV" using Microsoft Excel.
+[The Mayor of London's Website](http://data.london.gov.uk/dataset/average-house-prices-borough)
 
 # Loading the Data
 
