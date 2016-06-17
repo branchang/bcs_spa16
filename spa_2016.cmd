@@ -19,8 +19,8 @@ IF "%command%" == "start"  (CALL :start_all  && EXIT /B 0)
 IF "%command%" == "stop"   (CALL :stop_all   && EXIT /B 0)
 IF "%command%" == "status" (CALL :status_all && EXIT /B 0)
 
-IF "%command%" == "spark_client" (ECHO NOT WRITTEN YET)
-IF "%command%" == "hive_client"  (ECHO NOT WRITTEN YET)
+IF "%command%" == "spark_client" (CALL :spark_client && EXIT /B 0)
+IF "%command%" == "hive_client"  (CALL :hive_client && EXIT /B 0)
 
 ECHO Syntax: spa_2016.cmd [ start / stop / status / spark_client / hive_client ]
 
@@ -91,6 +91,22 @@ ECHO Java processes:
 %JAVA_HOME%\bin\jps.exe
 EXIT /B 0
  
+:: ======================
+:: Client Functions
+:: ======================
+ 
+:hive_client
+ECHO %script%: Starting Hive client...
+ECHO Press Control-D to quit
+ECHO NOT WRITTEN YET
+EXIT /B 0
+
+:spark_client
+ECHO %script%: Starting Spark client...
+ECHO Press Control-D to quit
+spark\bin\spark-shell.cmd
+EXIT /B 0
+
 :: ======================
 :: Utility Functions
 :: ======================
