@@ -31,4 +31,4 @@ REM Spark configuration
 set SPARK_HOME=%SPA_2016%\spark
 
 REM Hive configuration
-set HIVE_HOME=$SPA_2016\hive
+set HIVE_HOME=%SPA_2016%\hive
