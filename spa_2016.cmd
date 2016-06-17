@@ -55,18 +55,18 @@ EXIT /B 0
 :: ----------------------
 :start_spark
 ECHO %script%: Starting Spark
-start spark\bin\spark-class.cmd org.apache.spark.deploy.master.Master || (ECHO %script%: Failed to start Spark Master, error=%ERRORLEVEL%)
+START spark\bin\spark-class.cmd org.apache.spark.deploy.master.Master || (ECHO %script%: Failed to start Spark Master, error=%ERRORLEVEL%)
 ECHO %script%: Started Spark Master on %IP_ADDRESS%
 CALL :sleep 5
-start spark\bin\spark-class.cmd org.apache.spark.deploy.worker.Worker spark://%IP_ADDRESS%:7077 || (ECHO %script%: Failed to start Spark Worker, error=%ERRORLEVEL%)
+START spark\bin\spark-class.cmd org.apache.spark.deploy.worker.Worker spark://%IP_ADDRESS%:7077 || (ECHO %script%: Failed to start Spark Worker, error=%ERRORLEVEL%)
 ECHO %script%: Started Spark Worker on %IP_ADDRESS%
 EXIT /B 0
  
 :: ----------------------
 :start_hive
-ECHO %script%: Starting Hive
-REM ++ start Hive ++ || (ECHO %script%: Failed to start Hive server, error=%ERRORLEVEL%)
-REM ?? C:\cygwin\bin\bash hiveserver2 ??
+ECHO %script%: Starting Hive Server
+START %HIVE_HOME%\bin\hive.cmd --service hiveserver2 || (ECHO %script%: Failed to start Hive server, error=%ERRORLEVEL%)
+ECHO %script%: Started Hive Server
 EXIT /B 0
  
 :: ======================
@@ -100,13 +100,12 @@ EXIT /B 0
 :spark_client
 ECHO %script%: Running Spark client
 ECHO Press Control-D to quit
-spark\bin\spark-shell.cmd
+start spark\bin\spark-shell.cmd
 EXIT /B 0
 
 :hive_client
-ECHO %script%: Running Hive client
-ECHO Press Control-D to quit
-ECHO NOT WRITTEN YET
+ECHO %script%: Running Hive client (Spark version)
+start %SPARK_HOME%\bin\beeline.cmd -u jdbc:hive2:// --color
 EXIT /B 0
 
 :: ======================
