@@ -65,7 +65,7 @@ EXIT /B 0
 :: ----------------------
 :start_hive
 ECHO %script%: Starting Hive Server
-START %HIVE_HOME%\bin\hive.cmd --service hiveserver2 || (ECHO %script%: Failed to start Hive server, error=%ERRORLEVEL%)
+START %HIVE_HOME%\bin\hive.cmd --service hiveserver2 1> %SPA_2016%\logs\hive.log 2>&1 || (ECHO %script%: Failed to start Hive server, error=%ERRORLEVEL%)
 ECHO %script%: Started Hive Server
 EXIT /B 0
  
