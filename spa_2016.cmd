@@ -44,7 +44,7 @@ EXIT /B 1
  
 :: ----------------------
 :start_hadoop
-ECHO %script%: Starting Hadoop...
+ECHO %script%: Starting Hadoop
 CALL start-dfs.cmd || (ECHO %script%: Failed to start Hadoop HDFS, error=%ERRORLEVEL%)
 ECHO %script%: Started HDFS
 CALL :sleep 5
@@ -54,7 +54,7 @@ EXIT /B 0
  
 :: ----------------------
 :start_spark
-ECHO %script%: Starting Spark...
+ECHO %script%: Starting Spark
 start spark\bin\spark-class.cmd org.apache.spark.deploy.master.Master || (ECHO %script%: Failed to start Spark Master, error=%ERRORLEVEL%)
 ECHO %script%: Started Spark Master on %IP_ADDRESS%
 CALL :sleep 5
@@ -64,7 +64,7 @@ EXIT /B 0
  
 :: ----------------------
 :start_hive
-ECHO %script%: Starting Hive...
+ECHO %script%: Starting Hive
 REM ++ start Hive ++ || (ECHO %script%: Failed to start Hive server, error=%ERRORLEVEL%)
 REM ?? C:\cygwin\bin\bash hiveserver2 ??
 EXIT /B 0
@@ -74,9 +74,11 @@ EXIT /B 0
 :: ======================
  
 :stop_all
+ECHO %script%: Stopping Hadoop
 CALL %SPA_2016%\hadoop\sbin\stop-dfs.cmd ||  (ECHO %script%: Failed to stop Hadoop DFS, error=%ERRORLEVEL%)
 CALL %SPA_2016%\hadoop\sbin\stop-yarn.cmd || (ECHO %script%: Failed to stop Hadoop YARN, error=%ERRORLEVEL%)
 ECHO PLEASE CLOSE SPARK WINDOWS
+ECHO PLEASE CLOSE HIVE WINDOWS
 REM Don't know how to do that yet...
 ECHO Java processes:
 %JAVA_HOME%\bin\jps.exe
@@ -95,16 +97,16 @@ EXIT /B 0
 :: Client Functions
 :: ======================
  
-:hive_client
-ECHO %script%: Starting Hive client...
-ECHO Press Control-D to quit
-ECHO NOT WRITTEN YET
-EXIT /B 0
-
 :spark_client
-ECHO %script%: Starting Spark client...
+ECHO %script%: Running Spark client
 ECHO Press Control-D to quit
 spark\bin\spark-shell.cmd
+EXIT /B 0
+
+:hive_client
+ECHO %script%: Running Hive client
+ECHO Press Control-D to quit
+ECHO NOT WRITTEN YET
 EXIT /B 0
 
 :: ======================
@@ -112,6 +114,6 @@ EXIT /B 0
 :: ======================
  
 :sleep
-ECHO sleep for %1 seconds
+ECHO %script%: Sleeping for %1 seconds
 PING.EXE -N %~1 127.0.0.1 > NULL
 EXIT /B 0
