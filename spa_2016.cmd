@@ -1,7 +1,7 @@
 :: Name:    spa_2016.cmd
 :: Purpose: Windows script to start / stop Big Data services
 :: Author:  Nick Rozanski
-:: Syntax:  spa_2016.cmd [ start | stop | status | spark_client | hive_client ]
+:: Syntax:  spa_2016.cmd [ start | stop | status | spark_shell | beeline ]
  
 @ECHO OFF
 SETLOCAL ENABLEEXTENSIONS
@@ -20,10 +20,10 @@ IF "%command%" == "stop"   (CALL :stop_all   && EXIT /B 0)
 IF "%command%" == "status" (CALL :status_all && EXIT /B 0)
 
 IF "%command%" == "init_metastore" (CALL :init_metastore && EXIT /B 0)
-IF "%command%" == "spark_client" (CALL :spark_client && EXIT /B 0)
-IF "%command%" == "hive_client"  (CALL :hive_client && EXIT /B 0)
+IF "%command%" == "spark_shell" (CALL :spark_shell && EXIT /B 0)
+IF "%command%" == "beeline"  (CALL :beeline && EXIT /B 0)
 
-ECHO Syntax: spa_2016.cmd [ start / stop / status / spark_client / hive_client / init_metastore ]
+ECHO Syntax: spa_2016.cmd [ start / stop / status / spark_shell / beeline / init_metastore ]
 
 ENDLOCAL
 ECHO ON
@@ -98,15 +98,16 @@ EXIT /B 0
 :: Client Functions
 :: ======================
  
-:spark_client
+:spark_shell
 ECHO %script%: Running Spark client
 ECHO Press Control-D to quit
-START $SPARK_HOME\bin\spark-shell.cmd
+START %PARK_HOME%\bin\spark-shell.cmd
 EXIT /B 0
 
-:hive_client
+:beeline
 ECHO %script%: Running Hive client (Spark version)
-START %SPARK_HOME%\bin\beeline.cmd -u jdbc:hive2:// --color
+ECHO Type '!quit' to quit
+%JAVA_HOME%\bin\java -cp "%SPARK_HOME%\conf\;%SPARK_HOME%\lib\spark-assembly-1.6.1-hadoop2.6.0.jar;%SPARK_HOME%\lib\datanucleus-api-jdo-3.2.6.jar;%SPARK_HOME%\lib\datanucleus-core-3.2.10.jar;%SPARK_HOME%\lib\datanucleus-rdbms-3.2.9.jar" -Djline.terminal=jline.UnsupportedTerminal  -Xms1g -Xmx1g org.apache.hive.beeline.BeeLine
 EXIT /B 0
 
 :: ======================
