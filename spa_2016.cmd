@@ -101,7 +101,7 @@ EXIT /B 0
 :spark_client
 ECHO %script%: Running Spark client
 ECHO Press Control-D to quit
-START spark\bin\spark-shell.cmd
+START $SPARK_HOME\bin\spark-shell.cmd
 EXIT /B 0
 
 :hive_client
