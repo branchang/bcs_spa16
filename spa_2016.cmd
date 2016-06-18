@@ -19,10 +19,11 @@ IF "%command%" == "start"  (CALL :start_all  && EXIT /B 0)
 IF "%command%" == "stop"   (CALL :stop_all   && EXIT /B 0)
 IF "%command%" == "status" (CALL :status_all && EXIT /B 0)
 
+IF "%command%" == "init_metastore" (CALL :init_metastore && EXIT /B 0)
 IF "%command%" == "spark_client" (CALL :spark_client && EXIT /B 0)
 IF "%command%" == "hive_client"  (CALL :hive_client && EXIT /B 0)
 
-ECHO Syntax: spa_2016.cmd [ start / stop / status / spark_client / hive_client ]
+ECHO Syntax: spa_2016.cmd [ start / stop / status / spark_client / hive_client / init_metastore ]
 
 ENDLOCAL
 ECHO ON
@@ -100,18 +101,34 @@ EXIT /B 0
 :spark_client
 ECHO %script%: Running Spark client
 ECHO Press Control-D to quit
-start spark\bin\spark-shell.cmd
+START spark\bin\spark-shell.cmd
 EXIT /B 0
 
 :hive_client
 ECHO %script%: Running Hive client (Spark version)
-start %SPARK_HOME%\bin\beeline.cmd -u jdbc:hive2:// --color
+START %SPARK_HOME%\bin\beeline.cmd -u jdbc:hive2:// --color
 EXIT /B 0
 
 :: ======================
-:: Utility Functions
+:: Miscellaneous Functions
 :: ======================
  
+:init_metastore
+REM SET metastore_dir=%SPA_2016%\data\hive
+ECHO Does nto work on Windows - please extract the TAR file in the downloads directory
+REM MKDIR %metastore_dir%
+REM PUSHD %metastore_dir%
+REM ECHO Creating Hive metastore at %metastore_dir%\metastore_db
+REM SET HADOOP=%HADOOP_HOME%\bin\hadoop.cmd
+REM SET HIVE_LIB=%HIVE_HOME%\lib
+REM SET HIVE_BIN_PATH=%HIVE_HOME%\bin
+REM SET HIVEARGS=-initSchema -dbType derby
+REM %HIVE_HOME%\bin\ext\schemaTool.cmd
+REM ECHO Created Hive metastore at %metastore_dir%\metastore_db
+REM DIR %metastore_dir%
+REM POPD
+EXIT /B 0
+
 :sleep
 ECHO %script%: Sleeping for %1 seconds
 PING.EXE -N %~1 127.0.0.1 > NULL

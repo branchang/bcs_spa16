@@ -35,6 +35,12 @@
     and is deprecated in Hive 2 line. It may be removed without further warning.
     </description>
   </property>
-
+  <property>
+    <name>datanucleus.autoCreateTables</name>
+    <value>True</value>
+    <description>
+    Instruct Hive to automatically create the metadata tables on first invocation.
+    </description>
+  </property>
 
 </configuration>
