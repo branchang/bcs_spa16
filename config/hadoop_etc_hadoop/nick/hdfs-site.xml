@@ -18,21 +18,18 @@
 
 <configuration>
     <property>
-        <name>fs.defaultFS</name>
-        <value>hdfs://localhost:9000</value>
-        <description>NameNode URI</description>
+        <name>dfs.datanode.data.dir</name>
+        <value>file:/Users/nick/SPA_2016/data/hadoop/hdfs/datanode</value>
+        <description>
+            Paths on the local filesystem where the DataNode stores its blocks
+        </description>
     </property>
     <property>
-        <name>hadoop.tmp.dir</name>
-        <value>/YOURHOME/SPA_2016/data/hadoop/tmp</value>
-    </property>
-    <property>
-        <name>hadoop.proxyuser.YOURNAME.hosts</name>
-        <value>*</value>
-    </property>
-    <property>
-        <name>hadoop.proxyuser.YOURNAME.groups</name>
-        <value>*</value>
+        <name>dfs.namenode.name.dir</name>
+        <value>file:/Users/nick/SPA_2016/data/hadoop/hdfs/namenode</value>
+        <description>
+            Path on the local filesystem where the NameNode stores the namespace and transaction logs
+        </description>
     </property>
 
 </configuration>

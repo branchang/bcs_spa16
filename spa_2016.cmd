@@ -1,7 +1,7 @@
 :: Name:    spa_2016.cmd
 :: Purpose: Windows script to start / stop Big Data services
 :: Author:  Nick Rozanski
-:: Syntax:  spa_2016.cmd start | stop | status | init_metastore | hadoop_browser | spark_shell | beeline
+:: Syntax:  spa_2016.cmd start | stop | status | init_metastore | hadoop command / hadoop_browser | spark_shell | beeline
 
 @ECHO OFF
 SETLOCAL ENABLEEXTENSIONS
@@ -27,7 +27,7 @@ IF "%command%" == "hadoop_browser" (CALL :hadoop_browser && EXIT /B 0)
 IF "%command%" == "spark_shell" (CALL :spark_shell && EXIT /B 0)
 IF "%command%" == "beeline"  (CALL :beeline && EXIT /B 0)
 
-ECHO Syntax: spa_2016.cmd start / stop / status / init_metastore / hadoop_browser / spark_shell / beeline
+ECHO Syntax: spa_2016.cmd start / stop / status / init_metastore / hadoop command / hadoop_browser / spark_shell / beeline
 
 ENDLOCAL
 ECHO ON
