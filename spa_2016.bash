@@ -71,6 +71,7 @@ init_metastore() {
     rm -rf $hive_data_dir/*
     cd $hive_data_dir
     $HIVE_HOME/bin/schematool -initSchema -dbType derby
+    echo 'Initialising Hive Metastore complete.'
 }
 
 # open Hadoop file explorer in browser

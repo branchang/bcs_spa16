@@ -27,12 +27,12 @@
 # spark.executor.extraJavaOptions  -XX:+PrintGCDetails -Dkey=value -Dnumbers="one two three"
 #
 # Configure Hive for Spark
-spark.master                     spark://master:7077
-spark.eventLog.enabled           true
-spark.eventLog.dir               hdfs://namenode:8021/directory
-spark.serializer                 org.apache.spark.serializer.KryoSerializer
-spark.driver.memory              5g
-spark.executor.extraJavaOptions  -XX:+PrintGCDetails -Dkey=value -Dnumbers="one two three"
+spark.master                       spark://master:7077
+# spark.eventLog.enabled           true
+# spark.eventLog.dir               hdfs://namenode:8021/directory
+# spark.serializer                 org.apache.spark.serializer.KryoSerializer
+# spark.driver.memory              5g
+# spark.executor.extraJavaOptions  -XX:+PrintGCDetails -Dkey=value -Dnumbers="one two three"
 #
 # add CSV support
 spark.jars.packages com.databricks:spark-csv_2.11:1.4.0

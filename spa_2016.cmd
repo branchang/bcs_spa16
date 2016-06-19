@@ -21,6 +21,8 @@ IF "%command%" == "status" (CALL :status_all && EXIT /B 0)
 
 IF "%command%" == "init_metastore" (CALL :init_metastore && EXIT /B 0)
 
+IF "%command%" == "hadoop" (CALL :hadoop && EXIT /B 0)
+
 IF "%command%" == "hadoop_browser" (CALL :hadoop_browser && EXIT /B 0)
 IF "%command%" == "spark_shell" (CALL :spark_shell && EXIT /B 0)
 IF "%command%" == "beeline"  (CALL :beeline && EXIT /B 0)
@@ -48,20 +50,20 @@ EXIT /B 1
 :: ----------------------
 :start_hadoop
 ECHO %script%: Starting Hadoop
-CALL start-dfs.cmd || (ECHO %script%: Failed to start Hadoop HDFS, error=%ERRORLEVEL%)
+CALL %SPA_2016%\hadoop\sbin\start-dfs.cmd || (ECHO %script%: Failed to start Hadoop HDFS, error=%ERRORLEVEL%)
 ECHO %script%: Started HDFS
 CALL :sleep 5
-CALL start-yarn.cmd || (ECHO %script%: Failed to start Hadoop YARN, error=%ERRORLEVEL%)
+CALL %SPA_2016%\hadoop\sbin\start-yarn.cmd || (ECHO %script%: Failed to start Hadoop YARN, error=%ERRORLEVEL%)
 ECHO %script%: Started YARN
 EXIT /B 0
  
 :: ----------------------
 :start_spark
 ECHO %script%: Starting Spark
-START spark\bin\spark-class.cmd org.apache.spark.deploy.master.Master || (ECHO %script%: Failed to start Spark Master, error=%ERRORLEVEL%)
+START %SPA_2016%\spark\bin\spark-class.cmd org.apache.spark.deploy.master.Master || (ECHO %script%: Failed to start Spark Master, error=%ERRORLEVEL%)
 ECHO %script%: Started Spark Master on %IP_ADDRESS%
 CALL :sleep 5
-START spark\bin\spark-class.cmd org.apache.spark.deploy.worker.Worker spark://%IP_ADDRESS%:7077 || (ECHO %script%: Failed to start Spark Worker, error=%ERRORLEVEL%)
+START %SPA_2016%\spark\bin\spark-class.cmd org.apache.spark.deploy.worker.Worker spark://%IP_ADDRESS%:7077 || (ECHO %script%: Failed to start Spark Worker, error=%ERRORLEVEL%)
 ECHO %script%: Started Spark Worker on %IP_ADDRESS%
 EXIT /B 0
  
@@ -99,6 +101,12 @@ EXIT /B 0
 :: Client Functions
 :: ======================
  
+:hadoop
+ECHO %script%: Running Hadoop command %*
+START %SPA_2016%\hadoop\sbin\hadoop.cmd %*
+ECHO %script%: Completed Hadoop command
+EXIT /B 0
+
 :hadoop_browser
 ECHO %script%: Opening Hadoop browser
 SET CLIENT_URL='http://localhost:50070/explorer.html#/'
@@ -108,7 +116,7 @@ EXIT /B 0
 :spark_shell
 ECHO %script%: Running Spark client
 ECHO Press Control-D to quit
-START %PARK_HOME%\bin\spark-shell.cmd
+START %SPARK_HOME%\bin\spark-shell.cmd
 EXIT /B 0
 
 :beeline
@@ -123,7 +131,7 @@ EXIT /B 0
  
 :init_metastore
 REM SET metastore_dir=%SPA_2016%\data\hive
-ECHO Does nto work on Windows - please extract the TAR file in the downloads directory
+ECHO Does not work on Windows - please extract the TAR file in the downloads directory
 REM MKDIR %metastore_dir%
 REM PUSHD %metastore_dir%
 REM ECHO Creating Hive metastore at %metastore_dir%\metastore_db
