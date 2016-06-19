@@ -53,8 +53,8 @@ ECHO %script%: Starting Hadoop
 CALL %SPA_2016%\hadoop\sbin\start-dfs.cmd || (ECHO %script%: Failed to start Hadoop HDFS, error=%ERRORLEVEL%)
 ECHO %script%: Started HDFS
 CALL :sleep 5
-CALL %SPA_2016%\hadoop\sbin\start-yarn.cmd || (ECHO %script%: Failed to start Hadoop YARN, error=%ERRORLEVEL%)
-ECHO %script%: Started YARN
+REM CALL %SPA_2016%\hadoop\sbin\start-yarn.cmd || (ECHO %script%: Failed to start Hadoop YARN, error=%ERRORLEVEL%)
+REM ECHO %script%: Started YARN
 EXIT /B 0
  
 :: ----------------------
