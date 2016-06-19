@@ -1,8 +1,9 @@
 :: Name:    env.cmd
-:: Purpose: Set Windows environment for Big Dat services
+:: Purpose: Set Big Data environment for Windows
 :: Author:  Nick Rozanski
 :: Syntax:  env.cmd
-:: See:     http://steve-jansen.github.io/guides/windows-batch-scripting/
+:: Notes:   the Windows version is env.src
+::          note that Hadoop does not work under Cygwin
 
 @ECHO OFF
 SET script=%~n0
@@ -12,9 +13,11 @@ IF "%JAVA_HOME%" == "" (
    EXIT /B 1
 )
 ECHO JAVA_HOME is %JAVA_HOME%.
+
 SET SPA_2016=%~dp0
 SET SPA_2016=%SPA_2016:~0,-1%
 ECHO SPA_2016 is %SPA_2016%.
+
 ECHO PATH IS %PATH%
 
 REM Hadoop configuration

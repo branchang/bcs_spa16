@@ -1,5 +1,9 @@
 #!/bin/bash
-# start or stop Big data services
+# Name:    spa_2016.bash
+# Purpose: start or stop Big data services, run Big Data tools
+# Author:  Nick Rozanski
+# Syntax:  spa_2016.bash  start | stop | status | init_metastore | hadoop_browser | pyspark | beeline
+# Notes:   
 
 # set environment
 echo
@@ -7,6 +11,7 @@ source "$(dirname $0)"/env.src
 echo The project directory is $SPA_2016.
 echo
 
+# start all services
 start() {
     echo '===> Starting Hadoop...'
     $HADOOP_PREFIX/sbin/hadoop-daemon.sh start namenode
@@ -24,6 +29,7 @@ start() {
     nohup $HIVE_HOME/bin/hive --service hiveserver2 > $hive_log_file 2>&1 &
 }
 
+# stop all services
 stop() {
     echo '===> Stopping Hive...'
     pid="$(ps -e | grep HiveServer2 | grep -v 'grep ' | awk '{print $1}')"
@@ -44,6 +50,7 @@ stop() {
     $HADOOP_PREFIX/sbin/stop-dfs.sh
 }
 
+# display status
 status() {
     echo 'Hadoop and Spark Processes:'
     jps="$(which jps 2>/dev/null)"
@@ -55,22 +62,35 @@ status() {
     echo
 }
 
-hadoop_client() {
+# initialise the Hive metastore
+init_metastore() {
+    echo 'Initialising Hive Metastore (press enter to continue) or Control-C to abort'
+    read press_enter
+    hive_data_dir=$SPA_2016/data/hive
+    mkdir $hive_data_dir
+    rm -rf $hive_data_dir/*
+    cd $hive_data_dir
+    $HIVE_HOME/bin/schematool -initSchema -dbType derby
+}
+
+# open Hadoop file explorer in browser
+hadoop_browser() {
     client_url='http://localhost:50070/explorer.html#/'
     [ "$(uname)" == Linux ] && (sensible-browser $client_url &)
     [ "$(uname)" == Darwin ] && (open $client_url &)
-    [ "$(uname)" == CYGWIN_NT ] && echo 'Not yet supported for Cygwin'
     echo Opened Hadoop client URL $client_url
 }
 
-[ "$1" == start ] && start && exit
-[ "$1" == stop ] && stop && exit
+[ "$1" == start ]  && start && exit
+[ "$1" == stop ]   && stop && exit
 [ "$1" == status ] && status && exit
 
-[ "$1" == hadoop-client ] && hadoop_client && exit
-[ "$1" == spark-client ] && $SPARK_HOME/bin/pyspark && exit
-[ "$1" == hive-client ] && $SPARK_HOME/bin/beeline -u jdbc:hive2:// --color && exit
+[ "$1" == init_metastore ] && init_metastore && exit
 
-echo "Syntax: $0 [ start | stop | status | hadoop-client | spark-client | hive-client ]"
+[ "$1" == hadoop_browser ] && hadoop_browser && exit
+[ "$1" == pyspark ]        && $SPARK_HOME/bin/pyspark && exit
+[ "$1" == beeline ]        && $SPARK_HOME/bin/beeline -u jdbc:hive2:// --color && exit
+
+echo "Syntax: $0 start | stop | status | init_metastore | hadoop_client | pyspark | beeline"
 exit 1
 
