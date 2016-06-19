@@ -81,7 +81,7 @@ CALL %SPA_2016%\hadoop\sbin\stop-yarn.cmd || (ECHO %script%: Failed to stop Hado
 ECHO Java processes:
 %JAVA_HOME%\bin\jps.exe
 ECHO PLEASE CLOSE THE ABOVE SPARK AND HIVE WINDOWS USING THE COMMAND:
-ECHO taskkill /f /pid <process-id>
+ECHO 'taskkill /f /pid processid'
 EXIT /B 0
 
 :: ======================
@@ -106,7 +106,7 @@ EXIT /B 0
 :beeline
 ECHO %script%: Running Hive client (Spark version)
 ECHO Type '!quit' to quit
-%JAVA_HOME%\bin\java -cp "%SPARK_HOME%\conf\;%SPARK_HOME%\lib\spark-assembly-1.6.1-hadoop2.6.0.jar;%SPARK_HOME%\lib\datanucleus-api-jdo-3.2.6.jar;%SPARK_HOME%\lib\datanucleus-core-3.2.10.jar;%SPARK_HOME%\lib\datanucleus-rdbms-3.2.9.jar" -Djline.terminal=jline.UnsupportedTerminal  -Xms1g -Xmx1g org.apache.hive.beeline.BeeLine
+%JAVA_HOME%\bin\java -cp "%SPARK_HOME%\conf\;%SPARK_HOME%\lib\spark-assembly-1.6.1-hadoop2.6.0.jar;%SPARK_HOME%\lib\datanucleus-api-jdo-3.2.6.jar;%SPARK_HOME%\lib\datanucleus-core-3.2.10.jar;%SPARK_HOME%\lib\datanucleus-rdbms-3.2.9.jar" -Djline.terminal=jline.UnsupportedTerminal  -Xms1g -Xmx1g org.apache.hive.beeline.BeeLine -u jdbc:hive2://
 EXIT /B 0
 
 :: ======================
