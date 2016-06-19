@@ -80,8 +80,8 @@ EXIT /B 0
  
 :stop_all
 ECHO %script%: Stopping Hadoop
-%SPA_2016%\hadoop\sbin\stop-dfs.cmd ||  (ECHO %script%: Failed to stop Hadoop DFS, error=%ERRORLEVEL%)
-REM CALL %SPA_2016%\hadoop\sbin\stop-yarn.cmd || (ECHO %script%: Failed to stop Hadoop YARN, error=%ERRORLEVEL%)
+CALL %SPA_2016%\hadoop\sbin\stop-dfs.cmd ||  (ECHO %script%: Failed to stop Hadoop DFS, error=%ERRORLEVEL%)
+CALL %SPA_2016%\hadoop\sbin\stop-yarn.cmd || (ECHO %script%: Failed to stop Hadoop YARN, error=%ERRORLEVEL%)
 ECHO Java processes:
 %JAVA_HOME%\bin\jps.exe
 ECHO PLEASE CLOSE THE ABOVE SPARK AND HIVE WINDOWS USING THE COMMAND:
