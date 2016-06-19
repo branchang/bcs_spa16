@@ -78,11 +78,10 @@ EXIT /B 0
 ECHO %script%: Stopping Hadoop
 CALL %SPA_2016%\hadoop\sbin\stop-dfs.cmd ||  (ECHO %script%: Failed to stop Hadoop DFS, error=%ERRORLEVEL%)
 CALL %SPA_2016%\hadoop\sbin\stop-yarn.cmd || (ECHO %script%: Failed to stop Hadoop YARN, error=%ERRORLEVEL%)
-ECHO PLEASE CLOSE SPARK WINDOWS
-ECHO PLEASE CLOSE HIVE WINDOWS
-REM Don't know how to do that yet...
 ECHO Java processes:
 %JAVA_HOME%\bin\jps.exe
+ECHO PLEASE CLOSE THE ABOVE SPARK AND HIVE WINDOWS USING THE COMMAND:
+ECHO taskkill /f /pid <process-id>
 EXIT /B 0
 
 :: ======================
