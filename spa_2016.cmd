@@ -1,7 +1,7 @@
 :: Name:    spa_2016.cmd
 :: Purpose: Windows script to start / stop Big Data services
 :: Author:  Nick Rozanski
-:: Syntax:  spa_2016.cmd start | stop | status | init_metastore | hadoop command / hadoop_browser | spark_shell | beeline
+:: Syntax:  spa_2016.cmd start | stop | status | init_metastore | hadoop command / hadoop_browser | pyspark | beeline
 
 @ECHO OFF
 SETLOCAL ENABLEEXTENSIONS
@@ -24,10 +24,10 @@ IF "%command%" == "init_metastore" (CALL :init_metastore && EXIT /B 0)
 IF "%command%" == "hadoop" (CALL :hadoop && EXIT /B 0)
 
 IF "%command%" == "hadoop_browser" (CALL :hadoop_browser && EXIT /B 0)
-IF "%command%" == "spark_shell" (CALL :spark_shell && EXIT /B 0)
+IF "%command%" == "pyspark" (CALL :pyspark && EXIT /B 0)
 IF "%command%" == "beeline"  (CALL :beeline && EXIT /B 0)
 
-ECHO Syntax: spa_2016.cmd start / stop / status / init_metastore / hadoop command / hadoop_browser / spark_shell / beeline
+ECHO Syntax: spa_2016.cmd start / stop / status / init_metastore / hadoop command / hadoop_browser / pyspark / beeline
 
 ENDLOCAL
 ECHO ON
@@ -113,10 +113,11 @@ SET CLIENT_URL='http://localhost:50070/explorer.html#/'
 START %CLIENT_URL%
 EXIT /B 0
 
-:spark_shell
+:pyspark
 ECHO %script%: Running Spark client
 ECHO Press Control-D to quit
-START %SPARK_HOME%\bin\spark-shell.cmd
+CALL %SPARK_HOME%/bin/pyspark --master spark://%IP_ADDRESS%:7077
+REM START %SPARK_HOME%\bin\spark-shell.cmd
 EXIT /B 0
 
 :beeline
