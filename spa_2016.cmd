@@ -50,10 +50,10 @@ EXIT /B 1
 :: ----------------------
 :start_hadoop
 ECHO %script%: Starting Hadoop
-CALL %SPA_2016%\hadoop\sbin\start-dfs.cmd || (ECHO %script%: Failed to start Hadoop HDFS, error=%ERRORLEVEL%)
+START %SPA_2016%\hadoop\sbin\start-dfs.cmd || (ECHO %script%: Failed to start Hadoop HDFS, error=%ERRORLEVEL%)
 ECHO %script%: Started HDFS
 CALL :sleep 5
-REM CALL %SPA_2016%\hadoop\sbin\start-yarn.cmd || (ECHO %script%: Failed to start Hadoop YARN, error=%ERRORLEVEL%)
+REM START %SPA_2016%\hadoop\sbin\start-yarn.cmd || (ECHO %script%: Failed to start Hadoop YARN, error=%ERRORLEVEL%)
 REM ECHO %script%: Started YARN
 EXIT /B 0
  
@@ -80,8 +80,8 @@ EXIT /B 0
  
 :stop_all
 ECHO %script%: Stopping Hadoop
-CALL %SPA_2016%\hadoop\sbin\stop-dfs.cmd ||  (ECHO %script%: Failed to stop Hadoop DFS, error=%ERRORLEVEL%)
-CALL %SPA_2016%\hadoop\sbin\stop-yarn.cmd || (ECHO %script%: Failed to stop Hadoop YARN, error=%ERRORLEVEL%)
+%SPA_2016%\hadoop\sbin\stop-dfs.cmd ||  (ECHO %script%: Failed to stop Hadoop DFS, error=%ERRORLEVEL%)
+REM CALL %SPA_2016%\hadoop\sbin\stop-yarn.cmd || (ECHO %script%: Failed to stop Hadoop YARN, error=%ERRORLEVEL%)
 ECHO Java processes:
 %JAVA_HOME%\bin\jps.exe
 ECHO PLEASE CLOSE THE ABOVE SPARK AND HIVE WINDOWS USING THE COMMAND:
