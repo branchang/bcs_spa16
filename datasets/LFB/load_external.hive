@@ -1,3 +1,5 @@
+CREATE DATABASE spa_2016;
+
 USE spa_2016;
 
 CREATE EXTERNAL TABLE lfb_data
@@ -30,6 +32,6 @@ CREATE EXTERNAL TABLE lfb_data
      NumPumpsAttending STRING)
 
 ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' 
-LOCATION '/user/nick/load/lfb'
+LOCATION ‘hdfs://localhost:9000/user/spa16/load/lfb’
 tblproperties ('skip.header.line.count'='1');
 
