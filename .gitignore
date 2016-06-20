@@ -2,16 +2,26 @@
 
 .DS_Store
 
-data/*
-!data/README*
+# !data
+# !data/README*
 
-datasets/LFB/load
-datasets/LFB/zip
-datasets/LHP/load
-datasets/LHP/zip
-datasets/LHP/load_fixed/
-!datasets/LHP/fix_data/fix_data.hive
-datasets/LHP/fix_data/
+# include the Hive metastore
+# see http://stackoverflow.com/questions/5533050/gitignore-exclude-folder-but-include-specific-subfolder
+# data/*
+# !data/hive/
+# data/hive/*
+# !data/hive/metastore_db/
+
+data/hadoop
+data/spark
+
+datasets/lfb/load
+datasets/lfb/zip
+datasets/lhp/load
+datasets/lhp/zip
+datasets/lhp/load_fixed/
+!datasets/lhp/fix_data/fix_data.hive
+datasets/lhp/fix_data/
 
 downloads/*
 !downloads/README*
@@ -21,9 +31,8 @@ logs/*
 !logs/spark_logs
 !logs/README*
 
-hadoop
-hive
-spark
+./hadoop
+./hive
+./spark
 
-metastore_db
 **/derby.log
