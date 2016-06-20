@@ -2,16 +2,6 @@
 
 .DS_Store
 
-# !data
-# !data/README*
-
-# include the Hive metastore
-# see http://stackoverflow.com/questions/5533050/gitignore-exclude-folder-but-include-specific-subfolder
-# data/*
-# !data/hive/
-# data/hive/*
-# !data/hive/metastore_db/
-
 data/hadoop
 data/spark
 
