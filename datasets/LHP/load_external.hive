@@ -36,6 +36,6 @@ CREATE EXTERNAL TABLE lhp_data
      oa11            STRING)
 
 ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' 
-LOCATION 'hdfs://localhost:9000//user/nick/load/lhp'
+LOCATION 'hdfs://localhost:9000//user/spa16/load/lhp'
 tblproperties ('skip.header.line.count'='1');
 
