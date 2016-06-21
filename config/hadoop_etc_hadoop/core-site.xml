@@ -24,14 +24,14 @@
     </property>
     <property>
         <name>hadoop.tmp.dir</name>
-        <value>/YOURHOME/SPA_2016/data/hadoop/tmp</value>
+        <value>/Users/spa16/SPA_2016/data/hadoop/tmp</value>
     </property>
     <property>
-        <name>hadoop.proxyuser.YOURNAME.hosts</name>
+        <name>hadoop.proxyuser.spa16.hosts</name>
         <value>*</value>
     </property>
     <property>
-        <name>hadoop.proxyuser.YOURNAME.groups</name>
+        <name>hadoop.proxyuser.spa16.groups</name>
         <value>*</value>
     </property>
 

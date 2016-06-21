@@ -22,7 +22,7 @@
   <!-- Hive Execution Parameters -->
   <property>
     <name>javax.jdo.option.ConnectionURL</name>
-    <value>jdbc:derby:;databaseName=/YOURHOME/SPA_2016/data/hive/metastore_db;create=true</value>
+    <value>jdbc:derby:;databaseName=/Users/spa16/SPA_2016/data/hive/metastore_db;create=true</value>
     <description>JDBC connect string for a JDBC metastore</description>
   </property>
   <property>

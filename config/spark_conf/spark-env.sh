@@ -68,5 +68,5 @@
 # - SPARK_IDENT_STRING  A string representing this instance of spark. (Default: $USER)
 # - SPARK_NICENESS      The scheduling priority for daemons. (Default: 0)
 
-export HADOOP_CONF_DIR=/YOURHOME/SPA_2016/hadoop/etc/hadoop # point Spark towards Hadoop configuration files
-export SPARK_LOCAL_DIRS=/YOURHOME/SPA_2016/data/spark       # storage directories to use on this node for shuffle and RDD data
+export HADOOP_CONF_DIR=/Users/spa16/SPA_2016/hadoop/etc/hadoop # point Spark towards Hadoop configuration files
+export SPARK_LOCAL_DIRS=/Users/spa16/SPA_2016/data/spark       # storage directories to use on this node for shuffle and RDD data
