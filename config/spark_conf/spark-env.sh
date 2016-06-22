@@ -70,3 +70,5 @@
 
 export HADOOP_CONF_DIR=/Users/spa16/SPA_2016/hadoop/etc/hadoop # point Spark towards Hadoop configuration files
 export SPARK_LOCAL_DIRS=/Users/spa16/SPA_2016/data/spark       # storage directories to use on this node for shuffle and RDD data
+export SPARK_WORKER_MEMORY=2000m                               # how much total memory workers have to give executors
+

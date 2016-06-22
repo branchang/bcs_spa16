@@ -6,9 +6,12 @@
 # Notes:   
 
 # set environment
-echo
 source "$(dirname $0)"/env.src
+IP_ADDRESS="$(ifconfig | grep 'inet ' | tail -1 | awk '{print $2}')"
+
+echo
 echo The project directory is $SPA_2016.
+echo Your IP address seems to be $IP_ADDRESS.
 echo
 
 # start all services
@@ -89,7 +92,7 @@ hadoop_browser() {
 [ "$1" == init_metastore ] && init_metastore && exit
 
 [ "$1" == hadoop_browser ] && hadoop_browser && exit
-[ "$1" == pyspark ]        && $SPARK_HOME/bin/pyspark && exit
+[ "$1" == pyspark ]        && $SPARK_HOME/bin/pyspark --master spark://$IP_ADDRESS:7077 && exit
 [ "$1" == beeline ]        && $SPARK_HOME/bin/beeline -u jdbc:hive2:// --color && exit
 
 echo "Syntax: $0 start | stop | status | init_metastore | hadoop_client | pyspark | beeline"
