@@ -2,6 +2,9 @@
 
 .DS_Store
 
+# uncomment this line to avoid overwriting the Hive metastore
+# metastore_db
+
 data/hadoop
 data/spark
 
