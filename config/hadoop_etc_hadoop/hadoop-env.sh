@@ -22,9 +22,9 @@
 # remote nodes.
 
 # The java implementation to use.
-# CHANGED BY NICK
 # export JAVA_HOME=${JAVA_HOME}
-source ../../env.src
+# changed by Nick
+source $HADOOP_HOME/../env.src
 
 # The jsvc implementation to use. Jsvc is required to run secure datanodes
 # that bind to privileged ports to provide authentication of data transfer
