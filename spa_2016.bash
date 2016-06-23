@@ -7,7 +7,8 @@
 
 # set environment
 source "$(dirname $0)"/env.src
-IP_ADDRESS="$(ifconfig | grep 'inet ' | tail -1 | awk '{print $2}')"
+# this works on OS X and Ubuntu
+IP_ADDRESS="$(ifconfig | grep 'inet ' | grep cast | awk '{print $2}' | sed -e 's/addr://')"
 
 echo
 echo The project directory is $SPA_2016.
