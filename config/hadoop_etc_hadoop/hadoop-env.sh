@@ -24,7 +24,15 @@
 # The java implementation to use.
 # export JAVA_HOME=${JAVA_HOME}
 # changed by Nick
-source $HADOOP_HOME/../env.src
+if [ -z "$JAVA_HOME" ]; then
+    if [ -f /usr/libexec/java_home ]; then
+        # Mac OS X
+        export JAVA_HOME="$(/usr/libexec/java_home)"
+    else
+        # Ubuntu
+        export JAVA_HOME="$(dirname $(dirname $(readlink -f /etc/alternatives/java)))"
+    fi
+fi
 
 # The jsvc implementation to use. Jsvc is required to run secure datanodes
 # that bind to privileged ports to provide authentication of data transfer
