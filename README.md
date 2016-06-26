@@ -32,6 +32,10 @@ You don't need to create the empty Hive metastore database - it is included in t
 I was unable to get the metastore command to work in Windows.
 (The format seems to be portable so I created it on OS X.)
 
+### Slide 18 (and onwards)
+Ignore the following warn messages from hadoop on OSX and Unix:
+    Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+
 ### Slide 31: Pyspark
 If Pyspark on Windows can't find Python, make sure it is installed, and that the Python directory
 (typically `C:\Python27`) is in `%PATH%`.
