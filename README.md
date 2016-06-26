@@ -33,7 +33,8 @@ I was unable to get the metastore command to work in Windows.
 (The format seems to be portable so I created it on OS X.)
 
 ### Slide 18 (and onwards)
-Ignore the following warn messages from hadoop on OSX and Unix:
+Ignore the following warning message from hadoop on OSX and Unix:
+
     Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
 
 ### Slide 31: Pyspark
