@@ -3,6 +3,13 @@
 Code and documentation for a workshop at the [BCS SPA2016 Conference](http://www.spaconference.org/spa2016/)
 in which you will create a Big Data cluster, load it with real data and run queries against it.
 
+## Laptops
+You will need a laptop for the session.
+OS X, Linux and Windows are all supported (Windows can be a little tricky!).
+You will need at least 8GB RAM to run all the software.
+
+We do have a couple of virtual servers available so you may be able to use on of those.
+
 ## Documentation
 Copies of the slides can be found in the `slides` directory.
 
