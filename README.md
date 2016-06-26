@@ -22,7 +22,8 @@ I was unable to get the metastore command to work in Windows.
 (The format seems to be portable so I created it on OS X.)
 
 ### Slide 31: Pyspark
-If Pyspark on Windows can't find Python, make sure it is installed and the Python directory (typical C:\Python27) is in %PATH%.
+If Pyspark on Windows can't find Python, make sure it is installed, and that the Python directory
+(typically `C:\Python27`) is in `%PATH%`.
 
 ### Slide 41
 The Hadoop load command should read:
