@@ -1,14 +1,18 @@
 # Real-World Big Data In Action
 
-A workshop in which you will create a Big Data cluster, load it with real data and run queries against it.
+Code and documentation for a workshop at the [BCS SPA2016 Conference](http://www.spaconference.org/spa2016/)
+in which you will create a Big Data cluster, load it with real data and run queries against it.
 
-http://www.spaconference.org/spa2016/sessions/session657.html
+## Documentation
+Copies of the slides can be found in the `slides` directory.
+
+Reference documentation for Hadoop, Spark and Hive can be found in the `docs` directory.
 
 ## Course Errata
 
 ### Slides 8: Install Hadoop, Spark and Hive
 You can use 7zip to extract the compressed tar files on Windows.
-(There is a copy of the 7zip installer in the downloads directory.)
+(There is a copy of the 7zip installer in the `downloads` directory.)
 
 Right-click on a `.tgz` file and select 7zip -> Extract Here.
 
